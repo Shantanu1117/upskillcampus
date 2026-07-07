@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Checkout. Complete your delivery details and payment.">
+  <title>Foodie – Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="mega6.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- PROGRESS BAR -->
+  <div class="checkout-progress" aria-label="Checkout steps">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" style="width: 66%"></div>
+    </div>
+    <div class="progress-steps">
+      <div class="progress-step done">
+        <div class="step-dot"><i class="ri-check-line"></i></div>
+        <span>Cart</span>
+      </div>
+      <div class="progress-step active">
+        <div class="step-dot"><i class="ri-map-pin-2-line"></i></div>
+        <span>Checkout</span>
+      </div>
+      <div class="progress-step">
+        <div class="step-dot"><i class="ri-check-double-line"></i></div>
+        <span>Confirm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CHECKOUT LAYOUT -->
+  <main class="checkout-main" aria-label="Checkout form">
+    <div class="checkout-layout">
+
+      <!-- LEFT: Address + Payment -->
+      <div class="checkout-left">
+
+        <!-- Page Title -->
+        <div class="checkout-heading">
+          <button class="back-btn" id="backBtn" aria-label="Go back to cart">
+            <i class="ri-arrow-left-line"></i>
+          </button>
+          <div>
+            <h1>Checkout</h1>
+            <p>Complete your details to place the order</p>
+          </div>
+        </div>
+
+        <!-- DELIVERY ADDRESS -->
+        <section class="checkout-section" aria-labelledby="address-heading">
+          <div class="section-head">
+            <div class="section-icon">
+              <i class="ri-map-pin-2-fill" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 id="address-heading">Delivery Address</h2>
+              <p>Where should we deliver your order?</p>
+            </div>
+          </div>
+
+          <div class="address-form">
+            <div class="form-row two-col">
+              <div class="input-group">
+                <label for="fullName">Full Name</label>
+                <div class="input-wrap">
+                  <i class="ri-user-line"></i>
+                  <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <div class="input-wrap">
+                  <i class="ri-phone-line"></i>
+                  <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="address">House / Street / Area</label>
+              <div class="input-wrap">
+                <i class="ri-home-4-line"></i>
+                <input type="text" id="address" placeholder="Enter your complete address" autocomplete="street-address">
+              </div>
+            </div>
+
+            <div class="form-row three-col">
+              <div class="input-group">
+                <label for="city">City</label>
+                <div class="input-wrap">
+                  <i class="ri-building-2-line"></i>
+                  <input type="text" id="city" placeholder="City" autocomplete="address-level2">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="state">State</label>
+                <div class="input-wrap">
+                  <i class="ri-map-2-line"></i>
+                  <input type="text" id="state" placeholder="State" autocomplete="address-level1">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="pincode">Pincode</label>
+                <div class="input-wrap">
+                  <i class="ri-hashtag"></i>
+                  <input type="text" id="pincode" placeholder="Pincode" autocomplete="postal-code" maxlength="6">
+                </div>
+              </div>
+            </div>
+
+            <label class="save-address-label">
+              <input type="checkbox" id="saveAddress">
+              <span class="checkbox-custom"></span>
+              Save this address for future orders
+            </label>
+          </div>
+        </section>
+
+        <!-- PAYMENT METHOD -->
+        <section class="checkout-section" aria-labelledby="payment-heading">
+          <div class="section-head">
+            <div class="section-icon">
+              <i class="ri-wallet-fill" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 id="payment-heading">Payment Method</h2>
+              <p>Select how you'd like to pay</p>
+            </div>
+          </div>
+
+          <div class="payment-options" role="radiogroup" aria-label="Payment methods">
+
+            <label class="payment-option selected" for="payUPI">
+              <input type="radio" name="payment" id="payUPI" value="upi" checked>
+              <div class="pay-icon pay-upi">UPI</div>
+              <div class="pay-info">
+                <h3>UPI</h3>
+                <p>Google Pay, PhonePe, Paytm</p>
+              </div>
+              <span class="pay-badge recommended">Recommended</span>
+            </label>
+
+            <label class="payment-option" for="payCard">
+              <input type="radio" name="payment" id="payCard" value="card">
+              <div class="pay-icon pay-card">
+                <i class="ri-bank-card-2-line"></i>
+              </div>
+              <div class="pay-info">
+                <h3>Credit / Debit Card</h3>
+                <p>Visa, Mastercard, RuPay</p>
+              </div>
+              <span class="pay-badge secure"><i class="ri-lock-line"></i> Secure</span>
+            </label>
+
+            <label class="payment-option" for="payCOD">
+              <input type="radio" name="payment" id="payCOD" value="cod">
+              <div class="pay-icon pay-cod">
+                <i class="ri-money-dollar-circle-line"></i>
+              </div>
+              <div class="pay-info">
+                <h3>Cash on Delivery</h3>
+                <p>Pay when your order arrives</p>
+              </div>
+              <span class="pay-badge available">Available</span>
+            </label>
+
+            <label class="payment-option disabled" for="payWallet">
+              <input type="radio" name="payment" id="payWallet" value="wallet" disabled>
+              <div class="pay-icon pay-wallet">
+                <i class="ri-wallet-3-line"></i>
+              </div>
+              <div class="pay-info">
+                <h3>Foodie Wallet</h3>
+                <p>Not available yet</p>
+              </div>
+              <span class="pay-badge">Coming Soon</span>
+            </label>
+
+          </div>
+        </section>
+
+        <!-- DELIVERY TIP -->
+        <section class="checkout-section" aria-labelledby="tip-heading">
+          <div class="section-head">
+            <div class="section-icon">
+              <i class="ri-heart-fill" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 id="tip-heading">Tip Your Delivery Partner</h2>
+              <p>100% goes to your delivery partner</p>
+            </div>
+          </div>
+
+          <div class="tip-options" role="group" aria-label="Tip amount options">
+            <button class="tip-btn" data-amount="0">No Tip</button>
+            <button class="tip-btn active" data-amount="10">₹10</button>
+            <button class="tip-btn" data-amount="20">₹20</button>
+            <button class="tip-btn" data-amount="30">₹30</button>
+            <button class="tip-btn" data-amount="50">₹50</button>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT: Order Summary -->
+      <aside class="checkout-right" role="complementary" aria-label="Order summary">
+        <div class="summary-card">
+
+          <h2 class="summary-title">Your Order</h2>
+
+          <div class="order-items" id="orderItemsList">
+            <!-- populated by JS from the real cart -->
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="price-rows">
+            <div class="price-row">
+              <span>Item Total</span>
+              <span id="checkoutItemTotal">₹0</span>
+            </div>
+            <div class="price-row">
+              <span>Delivery Fee</span>
+              <span id="checkoutDelivery">₹40</span>
+            </div>
+            <div class="price-row">
+              <span>Packaging Fee</span>
+              <span id="checkoutPackaging">₹20</span>
+            </div>
+            <div class="price-row tip-row">
+              <span>Delivery Tip</span>
+              <span id="tipDisplay">₹10</span>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="grand-total-row">
+            <span>Total Amount</span>
+            <span class="grand-total" id="grandTotal">₹0</span>
+          </div>
+
+          <div class="savings-badge">
+            <i class="ri-check-double-line"></i>
+            You saved ₹60 on this order!
+          </div>
+
+          <button class="place-order-btn" id="placeOrderBtn" aria-label="Place your order">
+            <i class="ri-secure-payment-line"></i>
+            Place Order
+            <i class="ri-arrow-right-line"></i>
+          </button>
+
+          <p class="terms-note">
+            By placing the order, you agree to our
+            <a href="#">Terms &amp; Conditions</a> and
+            <a href="#">Privacy Policy</a>.
+          </p>
+
+          <div class="secure-note">
+            <i class="ri-shield-check-fill"></i>
+            <span>100% Secure Checkout</span>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Foodie</h2>
+        <p>Bringing delicious meals from your favourite restaurants directly to your doorstep.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Categories</a>
+        <a href="#">Track Order</a>
+      </div>
+      <div class="footer-links">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie. All Rights Reserved.
+    </div>
+  </footer>
+
+  <div id="statusToast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega6.js"></script>
+</body>
+</html>

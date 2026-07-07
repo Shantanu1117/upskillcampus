@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Your order history">
+  <title>Foodie – My Orders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="myorders.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="mega1.html">Home</a></li>
+      <li><a href="mega4.html">Restaurants</a></li>
+      <li><a href="mega11.html">Categories</a></li>
+      <li><a href="mega9.html">Offers</a></li>
+      <li><a href="mega8.html">Track Order</a></li>
+      <li><a href="myorders.html" class="active">My Orders</a></li>
+      <li><a href="mega10.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER — CINEMATIC VIDEO (same pattern as mega10/Contact) -->
+  <section class="orders-hero" aria-label="My Orders hero">
+
+    <div class="hero-media" aria-hidden="true">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="">
+        <source src="finalvdo.mp4" type="video/mp4">
+      </video>
+      <div class="hero-scrim"></div>
+      <div class="hero-grain"></div>
+      <div class="hero-vignette"></div>
+      <div class="hero-ray hero-ray-1"></div>
+      <div class="hero-ray hero-ray-2"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal-up" style="--d:0">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>YOUR ORDERS · ALL IN ONE PLACE</span>
+        </div>
+
+        <h1 class="reveal-up" style="--d:1">
+          Every order,<br>right where you left it.
+        </h1>
+
+        <p class="hero-sub reveal-up" style="--d:2">
+          Track what's on the way, reorder your favourites in one tap, and keep a full history of everything you've had from Foodie.
+        </p>
+
+        <div class="hero-cta-pills reveal-up" style="--d:3">
+          <a href="mega4.html" class="cta-pill cta-pill-primary">
+            <i class="ri-restaurant-2-fill"></i>
+            <span>Order Something New</span>
+          </a>
+          <a href="mega8.html" class="cta-pill cta-pill-ghost">
+            <i class="ri-map-pin-line"></i>
+            <span>Track Current Order</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="orders-main">
+
+    <div class="orders-loading" id="ordersLoading">
+      <i class="ri-loader-4-line spin"></i> Loading your orders…
+    </div>
+
+    <div class="orders-error" id="ordersError" hidden></div>
+
+    <div class="orders-empty" id="ordersEmpty" hidden>
+      <i class="ri-shopping-basket-line"></i>
+      <h3>No orders yet</h3>
+      <p>When you place an order, it'll show up here.</p>
+      <button class="browse-btn" id="browseRestaurantsBtn">Browse Restaurants</button>
+    </div>
+
+    <div class="orders-list" id="ordersList"></div>
+
+    <div class="orders-pagination" id="ordersPagination" hidden>
+      <button id="prevPageBtn" aria-label="Previous page"><i class="ri-arrow-left-s-line"></i></button>
+      <span id="pageIndicator">Page 1</span>
+      <button id="nextPageBtn" aria-label="Next page"><i class="ri-arrow-right-s-line"></i></button>
+    </div>
+
+  </main>
+
+  <div id="statusToast" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <i class="fa-solid fa-bowl-food"></i> Foodie
+      </div>
+      <p>&copy; 2026 Foodie. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="myorders.js"></script>
+</body>
+</html>

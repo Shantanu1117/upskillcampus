@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Contact us. We're always here to help you.">
+  <title>Foodie – Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="megaa10.css">
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="#" class="active">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER — CINEMATIC VIDEO -->
+  <section class="contact-hero" aria-label="Contact hero">
+
+    <div class="hero-media" aria-hidden="true">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="">
+        <source src="contact.mp4" type="video/mp4">
+      </video>
+      <div class="hero-scrim"></div>
+      <div class="hero-grain"></div>
+      <div class="hero-vignette"></div>
+      <div class="hero-ray hero-ray-1"></div>
+      <div class="hero-ray hero-ray-2"></div>
+    </div>
+
+    <div class="hero-inner">
+
+      <!-- Left: copy -->
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal-up" style="--d:0">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>SUPPORT DESK · ONLINE NOW</span>
+        </div>
+
+        <h1 id="heroHeading" class="reveal-up" style="--d:1">
+          Let's talk<br>about your order.
+        </h1>
+
+        <p class="hero-sub reveal-up" style="--d:2">
+          One line, one inbox, one team — real people who pick up the phone and actually solve things. Reach us any hour, any day.
+        </p>
+
+        <div class="hero-cta-pills reveal-up" style="--d:3">
+          <a href="tel:+919876543210" class="cta-pill cta-pill-primary" aria-label="Call us">
+            <i class="ri-phone-fill"></i>
+            <span>Call Us Now</span>
+          </a>
+          <a href="mailto:hello@foodie.com" class="cta-pill cta-pill-ghost" aria-label="Email us">
+            <i class="ri-mail-fill"></i>
+            <span>Email Us</span>
+          </a>
+        </div>
+
+        <div class="hero-trust reveal-up" style="--d:4">
+          <div class="trust-item">
+            <strong>&lt; 2 min</strong>
+            <span>avg. response</span>
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <strong>24 / 7</strong>
+            <span>always open</span>
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <strong>4.9 / 5</strong>
+            <span>support rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: floating glass cards -->
+      <div class="hero-cards" aria-label="Our service highlights">
+
+        <div class="glass-card card-support float-1 reveal-up" style="--d:2">
+          <div class="glass-card-icon">
+            <i class="ri-customer-service-2-line" aria-hidden="true"></i>
+          </div>
+          <div class="glass-card-body">
+            <h3>Customer Support</h3>
+            <p>We reply as soon as possible</p>
+          </div>
+        </div>
+
+        <div class="glass-card card-phone float-2 reveal-up" style="--d:3">
+          <div class="glass-card-icon">
+            <i class="ri-phone-fill" aria-hidden="true"></i>
+          </div>
+          <div class="glass-card-body">
+            <h3>Phone Support</h3>
+            <p>+91 98765 43210</p>
+          </div>
+        </div>
+
+        <div class="glass-card card-email float-3 reveal-up" style="--d:4">
+          <div class="glass-card-icon">
+            <i class="ri-mail-fill" aria-hidden="true"></i>
+          </div>
+          <div class="glass-card-body">
+            <h3>Email Support</h3>
+            <p>hello@foodie.com</p>
+          </div>
+        </div>
+
+        <div class="glass-card card-status float-4 reveal-up" style="--d:5">
+          <span class="status-pulse" aria-hidden="true"></span>
+          <div class="glass-card-body">
+            <h3>Availability</h3>
+            <p>Team is online now</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-scroll-cue" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="contact-main">
+    <div class="contact-layout">
+
+      <!-- LEFT: Contact Information -->
+      <aside class="contact-info-panel reveal" role="complementary" aria-label="Contact information">
+
+        <div class="info-card">
+          <h2>Contact Information</h2>
+          <div class="orange-bar"></div>
+
+          <div class="info-box" aria-label="Our location">
+            <div class="icon-box">
+              <i class="ri-map-pin-fill" aria-hidden="true"></i>
+            </div>
+            <div class="info-text">
+              <h4>Our Location</h4>
+              <p>123 Foodie Street,<br>Andheri West,<br>Mumbai, Maharashtra 400058</p>
+            </div>
+          </div>
+
+          <div class="info-box" aria-label="Phone number">
+            <div class="icon-box">
+              <i class="ri-phone-fill" aria-hidden="true"></i>
+            </div>
+            <div class="info-text">
+              <h4>Phone Number</h4>
+              <p>+91 98765 43210<br>
+                <span class="hours-tag">Mon–Sun · 9 AM – 11 PM</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="info-box" aria-label="Email address">
+            <div class="icon-box">
+              <i class="ri-mail-fill" aria-hidden="true"></i>
+            </div>
+            <div class="info-text">
+              <h4>Email Address</h4>
+              <p>hello@foodie.com<br>
+                <span class="hours-tag">We reply within 24 hours</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="info-box social-row" aria-label="Follow us on social media">
+            <div class="icon-box">
+              <i class="ri-team-fill" aria-hidden="true"></i>
+            </div>
+            <div class="info-text">
+              <h4>Follow Us</h4>
+              <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                <a href="#" aria-label="Twitter / X"><i class="ri-twitter-x-line"></i></a>
+                <a href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Placeholder -->
+          <div class="map-placeholder" aria-label="Location map preview">
+            <div class="map-grid" aria-hidden="true"></div>
+            <div class="map-pin-group">
+              <div class="map-pin-dot">
+                <i class="ri-map-pin-2-fill"></i>
+              </div>
+              <div class="map-pin-label">Foodie HQ</div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- RIGHT: Message Form -->
+      <div class="contact-form-panel reveal" role="region" aria-label="Send us a message">
+
+        <div class="form-card">
+          <h2>Send Us a Message</h2>
+          <div class="orange-bar"></div>
+
+          <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+
+            <div class="form-row two-col">
+              <div class="input-group">
+                <label for="contactName">Full Name</label>
+                <div class="input-box">
+                  <i class="ri-user-line" aria-hidden="true"></i>
+                  <input type="text" id="contactName" name="name" placeholder="Your full name" autocomplete="name" required aria-required="true">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="contactEmail">Email Address</label>
+                <div class="input-box">
+                  <i class="ri-mail-line" aria-hidden="true"></i>
+                  <input type="email" id="contactEmail" name="email" placeholder="your@email.com" autocomplete="email" required aria-required="true">
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="contactPhone">Phone (Optional)</label>
+              <div class="input-box">
+                <i class="ri-phone-line" aria-hidden="true"></i>
+                <input type="tel" id="contactPhone" name="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="contactSubject">Subject</label>
+              <div class="input-box">
+                <i class="ri-file-text-line" aria-hidden="true"></i>
+                <input type="text" id="contactSubject" name="subject" placeholder="How can we help?" required aria-required="true">
+              </div>
+            </div>
+
+            <!-- Category Chips -->
+            <div class="category-chips" role="group" aria-label="Message category">
+              <span class="chip-label">Category:</span>
+              <button type="button" class="chip active" data-cat="general">General</button>
+              <button type="button" class="chip" data-cat="order">Order Issue</button>
+              <button type="button" class="chip" data-cat="refund">Refund</button>
+              <button type="button" class="chip" data-cat="feedback">Feedback</button>
+              <button type="button" class="chip" data-cat="other">Other</button>
+            </div>
+
+            <div class="input-group">
+              <label for="contactMessage">Message</label>
+              <div class="input-box textarea-wrap">
+                <i class="ri-quill-pen-line" aria-hidden="true"></i>
+                <textarea id="contactMessage" name="message" placeholder="Describe your issue or feedback in detail…" rows="6" required aria-required="true"></textarea>
+              </div>
+              <div class="char-count" id="charCount" aria-live="polite">0 / 500</div>
+            </div>
+
+            <div class="form-footer">
+              <div class="privacy-note">
+                <i class="ri-shield-check-fill" aria-hidden="true"></i>
+                <span>Your data is safe with us. We never share it.</span>
+              </div>
+              <button type="submit" class="send-btn" id="sendBtn" aria-label="Send your message">
+                <i class="ri-send-plane-fill" aria-hidden="true"></i>
+                Send Message
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="faq-header">
+        <div class="hero-eyebrow hero-eyebrow-light">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>FREQUENTLY ASKED</span>
+        </div>
+        <h2 id="faq-heading">Quick Answers</h2>
+        <p>Common questions answered instantly</p>
+      </div>
+
+      <div class="faq-grid" role="list">
+
+        <div class="faq-card reveal" role="listitem">
+          <div class="faq-icon"><i class="ri-truck-line"></i></div>
+          <h4>How long does delivery take?</h4>
+          <p>Most orders are delivered within 30–45 minutes depending on your location and restaurant distance.</p>
+        </div>
+
+        <div class="faq-card reveal" role="listitem">
+          <div class="faq-icon"><i class="ri-refund-2-line"></i></div>
+          <h4>How do I get a refund?</h4>
+          <p>Refunds are processed within 5–7 business days to your original payment method after approval.</p>
+        </div>
+
+        <div class="faq-card reveal" role="listitem">
+          <div class="faq-icon"><i class="ri-map-pin-2-line"></i></div>
+          <h4>Can I track my order live?</h4>
+          <p>Yes! Use the Track Order page to follow your delivery partner in real time from kitchen to your door.</p>
+        </div>
+
+        <div class="faq-card reveal" role="listitem">
+          <div class="faq-icon"><i class="ri-coupon-3-line"></i></div>
+          <h4>How do I apply a coupon?</h4>
+          <p>Enter your promo code in the cart or checkout screen before placing your order to unlock savings.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Foodie</h2>
+        <p>Bringing delicious meals from your favourite restaurants directly to your doorstep.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="#" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+          <a href="#" aria-label="Facebook"><i class="ri-facebook-circle-line"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Categories</a>
+        <a href="#">Track Order</a>
+      </div>
+      <div class="footer-links">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie. All Rights Reserved. Made with ❤️ for food lovers.
+    </div>
+  </footer>
+
+  <div id="statusToast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega10.js"></script>
+</body>
+</html>

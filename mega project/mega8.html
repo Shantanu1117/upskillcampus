@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Track your order in real time.">
+  <title>Foodie – Track Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="mega8.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#" class="active">Track Order</a></li>
+      <li><a href="myorders.html">My Orders</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="track-header">
+    <div class="track-header-inner">
+      <div class="track-header-left">
+        <div class="hero-eyebrow">
+          <i class="ri-map-pin-2-fill"></i>
+          <span>Live Tracking</span>
+        </div>
+        <h1>Track Your <span>Order</span></h1>
+        <p class="order-id">Order: <strong id="trackOrderId">#UCC268393</strong></p>
+        <p class="track-sub">We're preparing your delicious food. Hang tight!</p>
+      </div>
+
+      <div class="eta-card" aria-label="Estimated delivery time">
+        <div class="eta-icon">
+          <i class="ri-e-bike-2-fill" aria-hidden="true"></i>
+        </div>
+        <div class="eta-info">
+          <strong id="etaTime">30–40 min</strong>
+          <span>Estimated Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="track-main">
+    <div class="track-layout">
+
+      <!-- LEFT: Progress + Map -->
+      <div class="track-left">
+
+        <!-- Tracking Steps -->
+        <div class="tracking-card" aria-label="Order status">
+          <h2>Order Status</h2>
+
+          <div class="tracking-steps" role="list" aria-label="Order tracking steps">
+
+            <div class="track-step active" role="listitem">
+              <div class="step-node">
+                <div class="step-circle">
+                  <i class="ri-check-line" aria-hidden="true"></i>
+                </div>
+                <div class="step-line active-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Order Confirmed</h4>
+                <p id="confirmedTime">--:-- PM</p>
+              </div>
+            </div>
+
+            <div class="track-step active" role="listitem">
+              <div class="step-node">
+                <div class="step-circle cooking">
+                  <i class="ri-restaurant-line" aria-hidden="true"></i>
+                </div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Preparing Your Order</h4>
+                <p>In the kitchen now</p>
+                <div class="cooking-dots" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="track-step" role="listitem">
+              <div class="step-node">
+                <div class="step-circle">
+                  <i class="ri-e-bike-2-line" aria-hidden="true"></i>
+                </div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Out for Delivery</h4>
+                <p>Pending</p>
+              </div>
+            </div>
+
+            <div class="track-step" role="listitem">
+              <div class="step-node">
+                <div class="step-circle">
+                  <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="step-body">
+                <h4>Delivered</h4>
+                <p>Almost there!</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="map-card" aria-label="Delivery map">
+
+          <div class="map-bg" aria-hidden="true"></div>
+
+          <!-- Restaurant Marker -->
+          <div class="map-marker restaurant-marker">
+            <div class="marker-dot marker-orange">
+              <i class="ri-restaurant-fill"></i>
+            </div>
+            <div class="marker-label">
+              <h5 id="mapRestaurantName">Foodie Kitchen</h5>
+              <p>Preparing your order</p>
+            </div>
+          </div>
+
+          <!-- Customer Marker -->
+          <div class="map-marker customer-marker">
+            <div class="marker-dot marker-green">
+              <i class="ri-user-smile-fill"></i>
+            </div>
+            <div class="marker-label label-right">
+              <h5 id="mapCustomerName">You</h5>
+              <p id="mapCustomerAddress">Delivering to your address</p>
+            </div>
+          </div>
+
+          <!-- Route Line -->
+          <div class="route-line" aria-hidden="true"></div>
+
+          <!-- Delivery Alert Bar -->
+          <div class="delivery-alert">
+            <div class="alert-left">
+              <div class="alert-icon">
+                <i class="ri-e-bike-2-fill" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h5>Delivery partner assigned soon</h5>
+                <p>You'll be notified when your order is picked up</p>
+              </div>
+            </div>
+            <button class="notify-btn" aria-label="Get notified when out for delivery">
+              <i class="ri-notification-3-line"></i>
+              Notify Me
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Delivery Partner Card -->
+        <div class="partner-card" aria-label="Delivery partner info">
+          <div class="partner-avatar">
+            <i class="ri-user-3-fill" aria-hidden="true"></i>
+          </div>
+          <div class="partner-info">
+            <span class="partner-label">Your Delivery Partner</span>
+            <h3>Assigning soon…</h3>
+            <p>You'll see partner details once assigned</p>
+          </div>
+          <div class="partner-actions">
+            <button class="partner-btn call-btn" aria-label="Call delivery partner" disabled>
+              <i class="ri-phone-fill"></i>
+            </button>
+            <button class="partner-btn chat-btn" aria-label="Chat with delivery partner" disabled>
+              <i class="ri-chat-3-fill"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Order Details -->
+      <aside class="track-right" role="complementary" aria-label="Order details">
+
+        <!-- Order Items -->
+        <div class="order-detail-card">
+          <h3>Order Details</h3>
+
+          <div class="order-items" id="trackOrderItems">
+            <!-- populated by JS from the placed order -->
+          </div>
+
+          <div class="bill-divider"></div>
+
+          <div class="bill-rows">
+            <div class="bill-row">
+              <span>Item Total</span>
+              <span id="trackItemTotal">₹0</span>
+            </div>
+            <div class="bill-row">
+              <span>Delivery Fee</span>
+              <span id="trackDelivery">₹0</span>
+            </div>
+            <div class="bill-row">
+              <span>Packaging Fee</span>
+              <span id="trackPackaging">₹0</span>
+            </div>
+            <div class="bill-row" id="trackTipRow" hidden>
+              <span>Delivery Tip</span>
+              <span id="trackTip">₹0</span>
+            </div>
+          </div>
+
+          <div class="bill-divider"></div>
+
+          <div class="bill-total">
+            <span>Total Amount</span>
+            <strong id="trackTotal">₹0</strong>
+          </div>
+        </div>
+
+        <!-- Delivery Address -->
+        <div class="address-detail-card">
+          <h3>Delivery Address</h3>
+
+          <div class="address-row">
+            <i class="ri-map-pin-fill" aria-hidden="true"></i>
+            <strong id="trackAddrName">Guest</strong>
+          </div>
+
+          <p id="trackAddrText">
+            Address details will appear here.
+          </p>
+
+          <div class="phone-row">
+            <i class="ri-phone-fill" aria-hidden="true"></i>
+            <span id="trackAddrPhone">—</span>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <button class="action-btn" id="reorderBtn" aria-label="Reorder the same items">
+            <i class="ri-refresh-line"></i>
+            Reorder
+          </button>
+          <button class="action-btn action-help" id="helpBtn" aria-label="Get help with order">
+            <i class="ri-customer-service-2-line"></i>
+            Need Help?
+          </button>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Foodie</h2>
+        <p>Bringing delicious meals from your favourite restaurants directly to your doorstep.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Categories</a>
+        <a href="#">Track Order</a>
+      </div>
+      <div class="footer-links">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie. All Rights Reserved.
+    </div>
+  </footer>
+
+  <div id="statusToast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- RATE YOUR ORDER MODAL — appears once the tracked order's real
+       status becomes DELIVERED. POST /api/reviews already existed on
+       the backend with no frontend surface anywhere in the project. -->
+  <div class="review-modal-overlay" id="reviewModalOverlay" hidden>
+    <div class="review-modal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+      <button class="review-modal-close" id="reviewModalClose" aria-label="Close">
+        <i class="ri-close-line"></i>
+      </button>
+      <h2 id="reviewModalTitle">How was your order?</h2>
+      <p class="review-modal-sub" id="reviewModalRestName">Rate your experience</p>
+
+      <div class="review-rating-group">
+        <span class="review-rating-label">Food</span>
+        <div class="star-picker" id="foodStarPicker" role="radiogroup" aria-label="Food rating">
+          <button type="button" data-value="1"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="2"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="3"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="4"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="5"><i class="ri-star-fill"></i></button>
+        </div>
+      </div>
+
+      <div class="review-rating-group">
+        <span class="review-rating-label">Delivery</span>
+        <div class="star-picker" id="deliveryStarPicker" role="radiogroup" aria-label="Delivery rating">
+          <button type="button" data-value="1"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="2"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="3"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="4"><i class="ri-star-fill"></i></button>
+          <button type="button" data-value="5"><i class="ri-star-fill"></i></button>
+        </div>
+      </div>
+
+      <textarea id="reviewComment" class="review-comment" maxlength="500"
+        placeholder="Tell us more (optional)"></textarea>
+
+      <button class="review-submit-btn" id="reviewSubmitBtn">Submit Review</button>
+    </div>
+  </div>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega8.js"></script>
+</body>
+</html>

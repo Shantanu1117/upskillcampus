@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Browse all food categories. Explore pizza, burgers, biryani, desserts and more from top restaurants.">
+  <title>Foodie – Browse Categories</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="mega11.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR (identical to mega1) ======== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#" class="active">Categories</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">My Orders</a></li>
+           <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ======== HERO ======== -->
+    <section class="cat-hero" aria-label="Categories hero">
+
+      <!-- Video Background -->
+      <div class="cat-hero-video-wrap" aria-hidden="true">
+        <video class="cat-hero-video" id="catHeroVideo" autoplay muted loop playsinline preload="auto">
+          <source src="category.mp4" type="video/mp4">
+        </video>
+        <div class="cat-hero-video-overlay"></div>
+        <div class="cat-hero-grain"></div>
+      </div>
+
+      <div class="cat-hero-inner">
+        <div class="tag" role="note">🍽️ 12+ Food Categories</div>
+
+        <h1 class="cat-hero-title">
+          What Are You <span>Craving</span> Today?
+        </h1>
+
+        <p class="cat-hero-text">
+          Explore hundreds of restaurants across every cuisine —<br class="br-hide">
+          from street food to fine dining, all at your fingertips.
+        </p>
+
+        <!-- Search bar -->
+        <div class="cat-search-box" role="search">
+          <label for="catSearch" class="sr-only">Search food categories</label>
+          <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+          <input
+            id="catSearch"
+            type="text"
+            placeholder="Search cuisines or dishes…"
+            aria-label="Search food categories"
+            autocomplete="off">
+          <button id="clearSearch" class="clear-btn" aria-label="Clear search" hidden>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Quick stat chips -->
+        <div class="hero-stats" aria-label="Platform stats">
+          <div class="stat-chip"><strong>800+</strong> Restaurants</div>
+          <div class="stat-chip"><strong>25 min</strong> Avg Delivery</div>
+          <div class="stat-chip"><strong>4.5★</strong> Avg Rating</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== STICKY FILTER PILLS ======== -->
+    <div class="filter-bar" role="navigation" aria-label="Filter by category" id="filterBar">
+      <div class="filter-inner">
+        <div class="filter-pills" id="filterPills" role="list">
+          <button class="pill active" data-filter="all" role="listitem">🍽️ All</button>
+          <button class="pill" data-filter="pizza" role="listitem">🍕 Pizza</button>
+          <button class="pill" data-filter="burger" role="listitem">🍔 Burger</button>
+          <button class="pill" data-filter="indian" role="listitem">🍛 Indian</button>
+          <button class="pill" data-filter="chinese" role="listitem">🥡 Chinese</button>
+          <button class="pill" data-filter="desserts" role="listitem">🍰 Desserts</button>
+          <button class="pill" data-filter="beverages" role="listitem">🥤 Beverages</button>
+          <button class="pill" data-filter="healthy" role="listitem">🥗 Healthy</button>
+          <button class="pill" data-filter="street" role="listitem">🌮 Street Food</button>
+          <button class="pill" data-filter="pasta" role="listitem">🍝 Pasta</button>
+          <button class="pill" data-filter="coffee" role="listitem">☕ Coffee</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== CATEGORY GRID ======== -->
+    <section class="categories-section" aria-labelledby="cat-grid-heading">
+      <div class="categories-wrapper">
+
+        <!-- Section header -->
+        <div class="section-header">
+          <div>
+            <h2 id="cat-grid-heading">Popular Categories</h2>
+            <p class="result-count" id="resultCount">Showing 12 categories</p>
+          </div>
+          <div class="sort-wrap">
+            <label for="sortSelect" class="sr-only">Sort categories</label>
+            <select id="sortSelect" aria-label="Sort categories">
+              <option value="popular">Sort by Popularity</option>
+              <option value="rated">Highest Rated</option>
+              <option value="most">Most Restaurants</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="category-grid" id="categoryGrid" role="list" aria-label="Food categories">
+
+          <!-- Pizza -->
+          <article class="category-card" data-category="pizza" data-name="pizza italian" data-rating="4.5" data-count="128" role="listitem" tabindex="0" aria-label="Pizza – 128 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Freshly baked pizza" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🍕</div>
+                <span class="card-rating">⭐ 4.5</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Pizza</h3>
+                  <p class="rest-count" data-count="128">128 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Pizza restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Burger -->
+          <article class="category-card" data-category="burger" data-name="burger grill" data-rating="4.3" data-count="96" role="listitem" tabindex="0" aria-label="Burger – 96 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Juicy burger" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🍔</div>
+                <span class="card-rating">⭐ 4.3</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Burger</h3>
+                  <p class="rest-count" data-count="96">96 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Burger restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Indian / Biryani -->
+          <article class="category-card" data-category="indian" data-name="biryani indian curry" data-rating="4.6" data-count="156" role="listitem" tabindex="0" aria-label="Indian – 156 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" alt="Fragrant biryani" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🍛</div>
+                <span class="card-rating">⭐ 4.6</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Indian</h3>
+                  <p class="rest-count" data-count="156">156 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Indian restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chinese -->
+          <article class="category-card" data-category="chinese" data-name="chinese noodles dim sum" data-rating="4.2" data-count="98" role="listitem" tabindex="0" aria-label="Chinese – 98 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80" alt="Chinese noodles" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🥡</div>
+                <span class="card-rating">⭐ 4.2</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Chinese</h3>
+                  <p class="rest-count" data-count="98">98 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Chinese restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Desserts -->
+          <article class="category-card" data-category="desserts" data-name="desserts cake sweets pastry" data-rating="4.4" data-count="74" role="listitem" tabindex="0" aria-label="Desserts – 74 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&q=80" alt="Delicious desserts" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🍰</div>
+                <span class="card-rating">⭐ 4.4</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Desserts</h3>
+                  <p class="rest-count" data-count="74">74 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Dessert restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Beverages -->
+          <article class="category-card" data-category="beverages" data-name="beverages drinks juice shake" data-rating="4.1" data-count="62" role="listitem" tabindex="0" aria-label="Beverages – 62 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="Fresh beverages" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🥤</div>
+                <span class="card-rating">⭐ 4.1</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Beverages</h3>
+                  <p class="rest-count" data-count="62">62 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Beverage restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Healthy -->
+          <article class="category-card" data-category="healthy" data-name="healthy salad diet vegan" data-rating="4.5" data-count="63" role="listitem" tabindex="0" aria-label="Healthy – 63 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Healthy food salad" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🥗</div>
+                <span class="card-rating">⭐ 4.5</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Healthy</h3>
+                  <p class="rest-count" data-count="63">63 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Healthy restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Street Food -->
+          <article class="category-card" data-category="street" data-name="street food chaat snacks" data-rating="4.3" data-count="110" role="listitem" tabindex="0" aria-label="Street Food – 110 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Street food feast" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🌮</div>
+                <span class="card-rating">⭐ 4.3</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Street Food</h3>
+                  <p class="rest-count" data-count="110">110 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Street Food restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pasta -->
+          <article class="category-card" data-category="pasta" data-name="pasta italian noodles" data-rating="4.2" data-count="83" role="listitem" tabindex="0" aria-label="Pasta – 83 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=600&q=80" alt="Pasta dish" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🍝</div>
+                <span class="card-rating">⭐ 4.2</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Pasta</h3>
+                  <p class="rest-count" data-count="83">83 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Pasta restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sandwich -->
+          <article class="category-card" data-category="sandwich" data-name="sandwich wrap roll" data-rating="4.0" data-count="71" role="listitem" tabindex="0" aria-label="Sandwich – 71 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1553909489-cd47e0907980?w=600&q=80" alt="Grilled sandwich" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🥪</div>
+                <span class="card-rating">⭐ 4.0</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Sandwich</h3>
+                  <p class="rest-count" data-count="71">71 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Sandwich restaurants">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Coffee -->
+          <article class="category-card" data-category="coffee" data-name="coffee cafe espresso latte" data-rating="4.4" data-count="55" role="listitem" tabindex="0" aria-label="Coffee – 55 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Coffee cup" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">☕</div>
+                <span class="card-rating">⭐ 4.4</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Coffee</h3>
+                  <p class="rest-count" data-count="55">55 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Coffee shops">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Ice Cream -->
+          <article class="category-card" data-category="desserts" data-name="ice cream gelato frozen" data-rating="4.3" data-count="69" role="listitem" tabindex="0" aria-label="Ice Cream – 69 Restaurants">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&q=80" alt="Ice cream scoops" loading="lazy">
+            </div>
+            <div class="card-info">
+              <div class="card-top">
+                <div class="card-icon">🍦</div>
+                <span class="card-rating">⭐ 4.3</span>
+              </div>
+              <div class="card-bottom">
+                <div>
+                  <h3>Ice Cream</h3>
+                  <p class="rest-count" data-count="69">69 Restaurants</p>
+                </div>
+                <button class="card-arrow" aria-label="Explore Ice Cream shops">
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="emptyState" hidden aria-live="polite">
+          <div class="empty-icon">🔍</div>
+          <h3>No categories found</h3>
+          <p>Try a different keyword or clear your filters</p>
+          <button class="reset-btn" id="resetBtn">Clear Filters</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======== PROMOTIONAL BANNER ======== -->
+    <section class="promo-banner" aria-label="Trending: Biryani season promotion">
+      <div class="promo-inner">
+        <div class="promo-text">
+          <div class="tag">🔥 Trending Now</div>
+          <h2>Biryani Season<br>is Here</h2>
+          <p>Order from 150+ top-rated biryani spots with exclusive weekend deals. Free delivery all week.</p>
+          <button class="cta-btn" aria-label="Explore Biryani restaurants">
+            Explore Biryani
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <figure class="promo-figure" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500&q=80"
+            alt=""
+            loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== FOOTER (matches mega1) ======== -->
+  <footer class="footer" role="contentinfo">
+
+    <!-- Delivery Banner -->
+    <div class="delivery-banner" aria-label="Free delivery promotion">
+      <div class="banner-left">
+        <h2>Get Free Delivery 🚚</h2>
+        <p>On your first order</p>
+        <button aria-label="Order now and get free delivery">Order Now</button>
+      </div>
+      <div class="banner-center" aria-hidden="true">
+        <h1>FREE DELIVERY</h1>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="footer-features" aria-label="Service features">
+      <div class="feature-box">
+        <span aria-hidden="true">🛒</span>
+        <div><h4>Easy Ordering</h4><p>Quick and easy steps</p></div>
+      </div>
+      <div class="feature-box">
+        <span aria-hidden="true">📍</span>
+        <div><h4>Live Tracking</h4><p>Track your order live</p></div>
+      </div>
+      <div class="feature-box">
+        <span aria-hidden="true">💳</span>
+        <div><h4>Multiple Payment</h4><p>Many secure options</p></div>
+      </div>
+      <div class="feature-box">
+        <span aria-hidden="true">🎧</span>
+        <div><h4>24/7 Support</h4><p>We are here to help</p></div>
+      </div>
+    </div>
+
+    <!-- Main Footer -->
+    <div class="footer-main">
+      <div class="footer-col">
+        <h2>Foodie</h2>
+        <p>Delicious food delivered to your doorstep quickly and safely.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Company</h3>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>foodie@gmail.com</p>
+        <p>+91 9876543210</p>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 Foodie. All Rights Reserved.</p>
+    </div>
+
+  </footer>
+
+  <!-- Toast -->
+  <div id="statusToast" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega11.js"></script>
+</body>
+</html>

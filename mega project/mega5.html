@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Your Cart. Review items and proceed to checkout.">
+  <title>Foodie – Your Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="mega5.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="View cart">
+        <i class="ri-shopping-cart-2-line" aria-hidden="true"></i>
+        <span class="cart-badge" id="cartBadge" hidden>0</span>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-left">
+        <div class="hero-eyebrow">
+          <i class="ri-shopping-bag-3-line"></i>
+          <span>Your Cart</span>
+        </div>
+        <h1>Review Your <span>Items</span></h1>
+        <p>Confirm your order and get it delivered fresh to your door.</p>
+      </div>
+      <div class="delivery-badge" aria-label="Estimated delivery time">
+        <i class="ri-e-bike-2-fill"></i>
+        <div>
+          <strong>30–40 min</strong>
+          <span>Estimated Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="cart-main" aria-label="Cart contents">
+    <div class="cart-layout">
+
+      <!-- LEFT: Cart Items -->
+      <div class="cart-panel" role="region" aria-label="Cart items">
+
+        <!-- Coupon Apply -->
+        <div class="voucher-card">
+          <div class="voucher-icon">
+            <i class="ri-coupon-3-fill" aria-hidden="true"></i>
+          </div>
+          <div class="voucher-content">
+            <h3>Apply Coupon</h3>
+            <p>Save up to ₹150 on this order</p>
+          </div>
+          <button class="apply-coupon-btn" id="applyCouponBtn" aria-label="Apply coupon">
+            <i class="ri-add-line"></i>
+            Apply
+          </button>
+        </div>
+
+        <!-- Dynamic cart items get injected here -->
+        <div class="cart-items-list" id="cartItemsList"></div>
+
+        <!-- Empty cart state -->
+        <div class="empty-cart-state" id="emptyCartState" hidden>
+          <div class="empty-cart-icon">🛒</div>
+          <h3>Your cart is empty</h3>
+          <p>Looks like you haven't added anything yet. Go explore some tasty options!</p>
+          <button class="reset-btn" id="browseRestaurantsBtn">Browse Restaurants</button>
+        </div>
+
+        <!-- Add Instructions -->
+        <div class="instructions-card" id="instructionsCard">
+          <label for="orderNote" class="instructions-label">
+            <i class="ri-file-text-line"></i>
+            Add Cooking Instructions
+          </label>
+          <textarea id="orderNote" placeholder="E.g. Less spicy, no onion, extra cheese…" rows="3" aria-label="Cooking instructions"></textarea>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Order Summary -->
+      <aside class="summary-panel" role="complementary" aria-label="Order summary" id="summaryPanel">
+        <div class="summary-box">
+
+          <h2 class="summary-title">Order Summary</h2>
+
+          <div class="summary-meta">
+            <span><i class="ri-store-2-line"></i> <span id="summaryRestaurantName">Foodie Restaurant</span></span>
+            <span><i class="ri-map-pin-line"></i> Delivering to you</span>
+          </div>
+
+          <div class="summary-rows">
+            <div class="summary-row">
+              <span>Item Total</span>
+              <span class="summary-val" id="summaryItemTotal">₹0</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery Fee</span>
+              <span class="summary-val" id="summaryDelivery">₹0</span>
+            </div>
+            <div class="summary-row">
+              <span>Packaging Fee</span>
+              <span class="summary-val" id="summaryPackaging">₹0</span>
+            </div>
+            <div class="summary-row discount-row">
+              <span>Discount Applied</span>
+              <span class="summary-val discount-val" id="summaryDiscount">−₹0</span>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="total-row">
+            <span>Total Amount</span>
+            <span class="total-amount" id="summaryTotal">₹0</span>
+          </div>
+
+          <div class="saved-box" aria-live="polite" id="savedBox" hidden>
+            <i class="ri-check-double-line"></i>
+            <span id="savedText">You saved ₹60 on this order!</span>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <i class="ri-shield-check-fill"></i>
+              <span>Secure</span>
+            </div>
+            <div class="trust-badge">
+              <i class="ri-time-fill"></i>
+              <span>30-40 min</span>
+            </div>
+            <div class="trust-badge">
+              <i class="ri-thumb-up-fill"></i>
+              <span>Fresh</span>
+            </div>
+          </div>
+
+          <button class="checkout-btn" id="checkoutBtn" aria-label="Proceed to checkout">
+            <i class="ri-secure-payment-line"></i>
+            Proceed to Checkout
+            <i class="ri-arrow-right-line"></i>
+          </button>
+
+          <button class="continue-btn" id="continueBtn" aria-label="Continue shopping">
+            <i class="ri-store-2-line"></i>
+            Continue Shopping
+          </button>
+
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Foodie</h2>
+        <p>Bringing delicious meals from your favourite restaurants directly to your doorstep.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Categories</a>
+        <a href="#">Track Order</a>
+      </div>
+      <div class="footer-links">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie. All Rights Reserved.
+    </div>
+  </footer>
+
+  <div id="statusToast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega5.js"></script>
+</body>
+</html>

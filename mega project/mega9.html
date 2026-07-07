@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie Offers – Exclusive deals, coupons, bank offers and combos. Save big on every order.">
+  <title>Foodie – Offers &amp; Deals</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="mega9.css">
+</head>
+<body class="dark">
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="mega1.html">Home</a></li>
+      <li><a href="mega4.html">Restaurants</a></li>
+      <li><a href="mega11.html">Categories</a></li>
+      <li><a href="mega9.html" class="active">Offers</a></li>
+      <li><a href="mega8.html">Track Order</a></li>
+      <li><a href="myorders.html">My Orders</a></li>
+      <li><a href="mega10.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="cartBtn" class="cart-btn" aria-label="View cart">
+        <i class="ri-shopping-basket-2-line" aria-hidden="true"></i>
+        <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
+      </button>
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- ======== HERO BANNER — cinematic video ======== -->
+  <section class="offers-hero" aria-label="Offers hero">
+
+    <div class="hero-media" id="heroMedia">
+      <video
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80"
+        aria-hidden="true">
+        <source src="offervdo.mp4" type="video/mp4">
+      </video>
+      <img
+        class="hero-fallback"
+        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80"
+        alt=""
+        aria-hidden="true"
+        style="display:none;">
+    </div>
+
+    <div class="offers-hero-inner">
+
+      <!-- LEFT: copy + coupon bar -->
+      <div class="hero-left reveal">
+        <div class="hero-eyebrow">
+          <i class="ri-coupon-3-line" aria-hidden="true"></i>
+          <span>EXCLUSIVE DEALS</span>
+        </div>
+        <h1>Save Big on<br><span>Every Order</span></h1>
+        <p>Limited-time offers, bank cashbacks, combo deals and member-only coupons — all in one place.</p>
+
+        <div class="coupon-apply-bar" role="search" aria-label="Apply coupon code">
+          <div class="coupon-input-wrap">
+            <i class="ri-coupon-line" aria-hidden="true"></i>
+            <input
+              id="couponInput"
+              type="text"
+              placeholder="Enter promo code…"
+              aria-label="Enter promo code"
+              autocomplete="off"
+              maxlength="20">
+          </div>
+          <button id="applyCouponBtn" aria-label="Apply promo code">Apply</button>
+        </div>
+
+        <div class="hero-stats" aria-label="Offer statistics">
+          <div class="hero-stat">
+            <strong id="statOffers">50+</strong>
+            <span>Live Offers</span>
+          </div>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <strong>Up to 50%</strong>
+            <span>Max Discount</span>
+          </div>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <strong>₹100</strong>
+            <span>Avg Savings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: premium deal card -->
+  
+    </div>
+  </section>
+
+  <!-- ======== FILTER TAB BAR ======== -->
+  <nav class="filter-nav" aria-label="Offer categories">
+    <div class="filter-nav-inner">
+
+      <button class="offer-tab active-tab" data-filter="all" aria-pressed="true">
+        <span class="tab-icon"><i class="ri-percent-fill" aria-hidden="true"></i></span>
+        <span>All Offers</span>
+      </button>
+
+      <button class="offer-tab" data-filter="bestseller" aria-pressed="false">
+        <span class="tab-icon tab-fire"><i class="ri-fire-fill" aria-hidden="true"></i></span>
+        <span>Best Sellers</span>
+      </button>
+
+      <button class="offer-tab" data-filter="combo" aria-pressed="false">
+        <span class="tab-icon tab-gift"><i class="ri-gift-fill" aria-hidden="true"></i></span>
+        <span>Combo Offers</span>
+      </button>
+
+      <button class="offer-tab" data-filter="delivery" aria-pressed="false">
+        <span class="tab-icon tab-bike"><i class="ri-e-bike-2-fill" aria-hidden="true"></i></span>
+        <span>Free Delivery</span>
+      </button>
+
+      <button class="offer-tab" data-filter="bank" aria-pressed="false">
+        <span class="tab-icon tab-bank"><i class="ri-bank-fill" aria-hidden="true"></i></span>
+        <span>Bank Offers</span>
+      </button>
+
+      <button class="offer-tab" data-filter="wallet" aria-pressed="false">
+        <span class="tab-icon tab-wallet"><i class="ri-wallet-3-fill" aria-hidden="true"></i></span>
+        <span>Wallet Offers</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ======== OFFERS FOR YOU ======== -->
+    <section class="section-wrap" aria-labelledby="offers-heading">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2 id="offers-heading">
+            <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            Offers For You
+          </h2>
+          <p class="section-sub">Curated picks based on what's trending today</p>
+        </div>
+        <div class="offers-search-wrap">
+          <i class="ri-search-line" aria-hidden="true"></i>
+          <input
+            id="offersSearch"
+            type="text"
+            placeholder="Search offers…"
+            aria-label="Search offers">
+        </div>
+      </div>
+
+      <div class="countdown-strip" aria-live="polite" aria-label="Flash sale countdown">
+        <span class="countdown-label">⚡ Flash Sale ends in:</span>
+        <div class="countdown-blocks">
+          <div class="cd-block"><span id="cdHours">--</span><small>HRS</small></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span id="cdMins">--</span><small>MIN</small></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span id="cdSecs">--</span><small>SEC</small></div>
+        </div>
+      </div>
+
+      <div class="offers-grid" id="offersGrid" role="list">
+
+        <article class="offer-card orange reveal" role="listitem" data-category="all bestseller" aria-label="Flat 20% off on orders above ₹199, view on Restaurants">
+          <div class="card-ribbon">HOT</div>
+          <div class="card-top">
+            <span class="discount-tag">20% OFF</span>
+            <button class="wish-btn" aria-label="Save offer" aria-pressed="false">♡</button>
+          </div>
+          <figure class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" alt="Burger" loading="lazy">
+          </figure>
+          <div class="card-body">
+            <h3>Flat 20% OFF</h3>
+            <p>On orders above ₹199</p>
+            <div class="coupon-chip">
+              <span class="chip-label">CODE</span>
+              <strong class="chip-code" data-code="FOOD20">FOOD20</strong>
+              <button class="copy-btn" aria-label="Copy code FOOD20" data-code="FOOD20">
+                <i class="ri-file-copy-line" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <button class="collect-btn" data-offer="Flat 20% OFF">Collect Offer</button>
+        </article>
+
+        <article class="offer-card purple reveal" role="listitem" data-category="all delivery" aria-label="Free delivery on orders above ₹149, view on Restaurants">
+          <div class="card-top">
+            <span class="discount-tag">FREE<br>DELIVERY</span>
+            <button class="wish-btn" aria-label="Save offer" aria-pressed="false">♡</button>
+          </div>
+          <figure class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=400&q=80" alt="Delivery scooter" loading="lazy">
+          </figure>
+          <div class="card-body">
+            <h3>Free Delivery</h3>
+            <p>On orders above ₹149</p>
+            <div class="coupon-chip">
+              <span class="chip-label">CODE</span>
+              <strong class="chip-code" data-code="FREEDEL">FREEDEL</strong>
+              <button class="copy-btn" aria-label="Copy code FREEDEL" data-code="FREEDEL">
+                <i class="ri-file-copy-line" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <button class="collect-btn" data-offer="Free Delivery">Collect Offer</button>
+        </article>
+
+        <article class="offer-card blue reveal" role="listitem" data-category="all bestseller" aria-label="Flat 30% off on pizza above ₹249, view on Restaurants">
+          <div class="card-ribbon">PIZZA</div>
+          <div class="card-top">
+            <span class="discount-tag">30% OFF</span>
+            <button class="wish-btn" aria-label="Save offer" aria-pressed="false">♡</button>
+          </div>
+          <figure class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80" alt="Pizza" loading="lazy">
+          </figure>
+          <div class="card-body">
+            <h3>Flat 30% OFF</h3>
+            <p>On Pizza orders above ₹249</p>
+            <div class="coupon-chip">
+              <span class="chip-label">CODE</span>
+              <strong class="chip-code" data-code="PIZZA30">PIZZA30</strong>
+              <button class="copy-btn" aria-label="Copy code PIZZA30" data-code="PIZZA30">
+                <i class="ri-file-copy-line" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <button class="collect-btn" data-offer="30% OFF Pizza">Collect Offer</button>
+        </article>
+
+        <article class="offer-card green reveal" role="listitem" data-category="all wallet" aria-label="₹100 instant off on orders above ₹399, view on Restaurants">
+          <div class="card-top">
+            <span class="discount-tag">₹100 OFF</span>
+            <button class="wish-btn" aria-label="Save offer" aria-pressed="false">♡</button>
+          </div>
+          <figure class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Food spread" loading="lazy">
+          </figure>
+          <div class="card-body">
+            <h3>₹100 Instant OFF</h3>
+            <p>On orders above ₹399</p>
+            <div class="coupon-chip">
+              <span class="chip-label">CODE</span>
+              <strong class="chip-code" data-code="SAVE100">SAVE100</strong>
+              <button class="copy-btn" aria-label="Copy code SAVE100" data-code="SAVE100">
+                <i class="ri-file-copy-line" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <button class="collect-btn" data-offer="₹100 Instant OFF">Collect Offer</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======== CINEMATIC VIDEO BREAK #1 ======== -->
+    <section class="video-break reveal" aria-label="Featured kitchen moment">
+      <video autoplay muted loop playsinline preload="none" aria-hidden="true">
+        <source src="videos/offers-bg-1.mp4" type="video/mp4">
+      </video>
+      <img class="vb-fallback" src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600&q=80" alt="" aria-hidden="true" style="display:none;">
+      <div class="video-break-content">
+        <div class="video-break-eyebrow">Crafted Fresh</div>
+        <h3>Every Dish, Plated With Intent</h3>
+        <p>Our partner kitchens prep each order the moment it's placed — no shortcuts, just flavor worth the wait.</p>
+      </div>
+    </section>
+
+    <!-- ======== BANK & WALLET OFFERS ======== -->
+    <section class="section-wrap" aria-labelledby="bank-heading">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2 id="bank-heading">🏦 Bank &amp; Wallet Offers</h2>
+          <p class="section-sub">Extra savings with your preferred payment method</p>
+        </div>
+        <a href="mega4.html" class="view-all-link" aria-label="View all bank offers on Restaurants">View All →</a>
+      </div>
+
+      <div class="bank-grid" role="list">
+
+        <article class="wallet-card reveal" role="listitem" data-category="bank" aria-label="SBI card 10% instant discount">
+          <div class="wallet-card-inner">
+            <div class="bank-logo sbi-logo">SBI</div>
+            <div class="wallet-info">
+              <h3>SBI <span>Card</span></h3>
+              <p>10% Instant Discount</p>
+              <small>Up to ₹150 on SBI Credit Cards</small>
+              <div class="wallet-code-row">
+                <span>Use Code:</span>
+                <strong data-code="SBICARD">SBICARD</strong>
+                <button class="copy-btn copy-btn-sm" aria-label="Copy code SBICARD" data-code="SBICARD">
+                  <i class="ri-file-copy-line" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="wallet-icon-wrap">
+              <i class="ri-bank-card-2-line" aria-hidden="true"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="wallet-card reveal" role="listitem" data-category="wallet" aria-label="Paytm ₹50 cashback">
+          <div class="wallet-card-inner">
+            <div class="bank-logo paytm-logo">PTM</div>
+            <div class="wallet-info">
+              <h3>Pay<span>tm</span></h3>
+              <p>₹50 Cashback</p>
+              <small>On orders above ₹199</small>
+              <div class="wallet-code-row">
+                <span>Use Code:</span>
+                <strong data-code="PAYTM50">PAYTM50</strong>
+                <button class="copy-btn copy-btn-sm" aria-label="Copy code PAYTM50" data-code="PAYTM50">
+                  <i class="ri-file-copy-line" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="wallet-icon-wrap">
+              <i class="ri-wallet-line" aria-hidden="true"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="wallet-card reveal" role="listitem" data-category="wallet" aria-label="PhonePe ₹75 cashback">
+          <div class="wallet-card-inner">
+            <div class="bank-logo phonepe-logo">PPe</div>
+            <div class="wallet-info">
+              <h3>Phone<span>Pe</span></h3>
+              <p>₹75 Cashback</p>
+              <small>On orders above ₹249</small>
+              <div class="wallet-code-row">
+                <span>Use Code:</span>
+                <strong data-code="PHONEPE75">PHONEPE75</strong>
+                <button class="copy-btn copy-btn-sm" aria-label="Copy code PHONEPE75" data-code="PHONEPE75">
+                  <i class="ri-file-copy-line" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="wallet-icon-wrap">
+              <i class="ri-smartphone-line" aria-hidden="true"></i>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======== EXCLUSIVE COMBOS ======== -->
+    <section class="section-wrap" aria-labelledby="combos-heading">
+      <div class="section-header">
+        <div class="section-title-group">
+          <h2 id="combos-heading">⭐ Exclusive Combos</h2>
+          <p class="section-sub">Bundled deals for maximum value</p>
+        </div>
+        <a href="mega4.html" class="view-all-link" aria-label="View all combo offers on Restaurants">View All →</a>
+      </div>
+
+      <div class="combo-grid" role="list">
+
+        <article class="combo-card reveal" role="listitem" data-category="combo" aria-label="Burger combo 28% off">
+          <div class="combo-badge combo-orange">28% OFF</div>
+          <figure class="combo-img-wrap">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" alt="Burger Combo" loading="lazy">
+          </figure>
+          <div class="combo-body">
+            <h4>Burger Combo</h4>
+            <div class="combo-price">
+              <span class="new-price">₹249</span>
+              <del class="old-price">₹349</del>
+            </div>
+          </div>
+          <button class="add-btn" aria-label="Add Burger Combo to cart" data-item="Burger Combo">+</button>
+        </article>
+
+        <article class="combo-card reveal" role="listitem" data-category="combo" aria-label="Pizza combo 33% off">
+          <div class="combo-badge combo-purple">33% OFF</div>
+          <figure class="combo-img-wrap">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80" alt="Pizza Combo" loading="lazy">
+          </figure>
+          <div class="combo-body">
+            <h4>Pizza Combo</h4>
+            <div class="combo-price">
+              <span class="new-price">₹299</span>
+              <del class="old-price">₹449</del>
+            </div>
+          </div>
+          <button class="add-btn" aria-label="Add Pizza Combo to cart" data-item="Pizza Combo">+</button>
+        </article>
+
+        <article class="combo-card reveal" role="listitem" data-category="combo" aria-label="Biryani combo 33% off">
+          <div class="combo-badge combo-green">33% OFF</div>
+          <figure class="combo-img-wrap">
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80" alt="Biryani Combo" loading="lazy">
+          </figure>
+          <div class="combo-body">
+            <h4>Biryani Combo</h4>
+            <div class="combo-price">
+              <span class="new-price">₹199</span>
+              <del class="old-price">₹299</del>
+            </div>
+          </div>
+          <button class="add-btn" aria-label="Add Biryani Combo to cart" data-item="Biryani Combo">+</button>
+        </article>
+
+        <article class="combo-card reveal" role="listitem" data-category="combo" aria-label="Snack combo 32% off">
+          <div class="combo-badge combo-blue">32% OFF</div>
+          <figure class="combo-img-wrap">
+            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400&q=80" alt="Snack Combo" loading="lazy">
+          </figure>
+          <div class="combo-body">
+            <h4>Snack Combo</h4>
+            <div class="combo-price">
+              <span class="new-price">₹149</span>
+              <del class="old-price">₹219</del>
+            </div>
+          </div>
+          <button class="add-btn" aria-label="Add Snack Combo to cart" data-item="Snack Combo">+</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======== CINEMATIC VIDEO BREAK #2 ======== -->
+    <section class="video-break reveal" aria-label="Delivery experience">
+      <video autoplay muted loop playsinline preload="none" aria-hidden="true">
+        <source src="videos/offers-bg-2.mp4" type="video/mp4">
+      </video>
+      <img class="vb-fallback" src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=1600&q=80" alt="" aria-hidden="true" style="display:none;">
+      <div class="video-break-content">
+        <div class="video-break-eyebrow">On The Way</div>
+        <h3>From Kitchen to Doorstep, Fast</h3>
+        <p>Real-time tracking and dedicated riders mean your order arrives hot, exactly when you expect it.</p>
+      </div>
+    </section>
+
+    <!-- ======== WHY FOODIE ======== -->
+    <section class="why-section reveal" aria-labelledby="why-heading">
+      <div class="why-inner">
+        <div class="why-left">
+          <h2 id="why-heading">Why use Foodie Offers?</h2>
+          <div class="why-features">
+            <div class="why-feat">
+              <div class="why-icon">⭐</div>
+              <div>
+                <h5>Best Discounts</h5>
+                <p>Save more on every order</p>
+              </div>
+            </div>
+            <div class="why-feat">
+              <div class="why-icon">🎁</div>
+              <div>
+                <h5>Exclusive Deals</h5>
+                <p>Only for Foodie users</p>
+              </div>
+            </div>
+            <div class="why-feat">
+              <div class="why-icon">⚡</div>
+              <div>
+                <h5>Easy &amp; Fast</h5>
+                <p>Apply in one click</p>
+              </div>
+            </div>
+            <div class="why-feat">
+              <div class="why-icon">💰</div>
+              <div>
+                <h5>Extra Rewards</h5>
+                <p>Earn points &amp; cashback</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-right" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&q=80"
+            alt="Gift and rewards"
+            loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SUBSCRIBE ======== -->
+    <section class="subscribe-section reveal" aria-label="Subscribe for offers">
+      <div class="subscribe-inner">
+        <div class="subscribe-text">
+          <h3>Don't Miss Any Offer!</h3>
+          <p>Subscribe to get amazing offers &amp; updates in your inbox</p>
+        </div>
+        <div class="subscribe-form" role="form" aria-label="Email subscription form">
+          <label for="emailInput" class="sr-only">Your email address</label>
+          <input
+            id="emailInput"
+            type="email"
+            placeholder="Enter your email address"
+            aria-label="Enter your email address"
+            autocomplete="email">
+          <button id="subscribeBtn">Subscribe</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Foodie</h2>
+        <p>Bringing delicious meals from your favourite restaurants directly to your doorstep.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="mega1.html">Home</a>
+        <a href="mega4.html">Restaurants</a>
+        <a href="mega11.html">Categories</a>
+        <a href="mega8.html">Track Order</a>
+      </div>
+      <div class="footer-links">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="mega10.html">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie. All Rights Reserved.
+    </div>
+  </footer>
+
+  <div id="statusToast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega9.js"></script>
+</body>
+</html>

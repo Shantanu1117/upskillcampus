@@ -1,0 +1,15 @@
+.heading::after{
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: white;
+    margin-left: 4px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity: 0;
+    }
+}

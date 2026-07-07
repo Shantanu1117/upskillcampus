@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodie – Discover top-rated restaurants near you. Filter by cuisine, location, and rating.">
+  <title>Foodie – Restaurants Near You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="mega4.css">
+  <!--
+    This page now loads restaurants LIVE from GET /api/restaurants.
+    The restaurant-grid below starts empty; mega4.js fetches, builds,
+    and inserts .restaurant-card elements at runtime using the same
+    classes/markup shape as before, so all existing CSS/animations
+    keep working unchanged. Clicking a card now goes to mega6.html
+    (a new restaurant menu page), not mega5.html (which is the cart).
+    Restaurant cards have NO add-to-cart controls — only individual
+    menu items (on mega6.html) can be added to the cart, since the
+    backend's cart API works against MenuItem._id, not restaurants.
+  -->
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo" aria-label="Foodie home">
+      <i class="fa-solid fa-bowl-food" aria-hidden="true"></i>
+      Foodie
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">Restaurants</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="View cart">
+        <i class="ri-shopping-cart-2-line" aria-hidden="true"></i>
+        <span class="cart-badge" id="cartBadge" hidden>0</span>
+      </button>
+      <div class="notif-wrap">
+        <button id="notifBell" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ri-notification-3-line"></i>
+          <span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" hidden>
+          <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button id="notifMarkAllBtn">Mark all read</button>
+          </div>
+          <div class="notif-panel-list" id="notifPanelList">
+            <div class="notif-empty">No notifications yet</div>
+          </div>
+        </div>
+      </div>
+      <button class="login-btn" aria-label="Login or sign up">Login</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO — now with cinematic video background -->
+  <section class="page-hero" aria-label="Restaurant search hero">
+
+    <div class="hero-video-wrap" aria-hidden="true">
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+        <source src="luxury restaurant.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <div class="page-hero-left">
+      <div class="hero-eyebrow reveal-up" style="--d:0.05s">
+        <i class="ri-map-pin-2-fill"></i>
+        <span>Restaurants Near You</span>
+      </div>
+      <h1 class="hero-title reveal-up" style="--d:0.16s">
+        Find the Best<br>
+        Food <span>Around You</span>
+      </h1>
+      <p class="hero-sub reveal-up" style="--d:0.28s">Top-rated spots, curated for your cravings. Order fresh, get it fast.</p>
+
+      <div class="offers-container" id="offersContainer" aria-label="Current offers">
+        <div class="offer-card">
+          <span class="offer-icon">🔥</span>
+          <div>
+            <h4>50% OFF</h4>
+            <p>On First Order</p>
+          </div>
+        </div>
+        <div class="offer-card">
+          <span class="offer-icon">🚚</span>
+          <div>
+            <h4>Free Delivery</h4>
+            <p>Orders above ₹299</p>
+          </div>
+        </div>
+        <div class="offer-card">
+          <span class="offer-icon">🎁</span>
+          <div>
+            <h4>Flat ₹100 OFF</h4>
+            <p>Use FOOD100</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-hero-right">
+      <div class="stats-container" aria-label="Platform statistics">
+        <div class="stat-card">
+          <h2>1500+</h2>
+          <p>Daily Orders</p>
+        </div>
+        <div class="stat-card">
+          <h2>4.9 ⭐</h2>
+          <p>Avg Rating</p>
+        </div>
+        <div class="stat-card">
+          <h2>30 Min</h2>
+          <p>Delivery</p>
+        </div>
+        <div class="stat-card">
+          <h2 id="totalRestaurantsStat">—</h2>
+          <p>Restaurants</p>
+        </div>
+      </div>
+
+      <div class="search-filter-block">
+        <div class="search-row">
+          <div class="search-input-wrap">
+            <i class="ri-search-line" aria-hidden="true"></i>
+            <input type="text" id="restaurantSearch" placeholder="Search restaurants or cuisines…" aria-label="Search restaurants or cuisines">
+          </div>
+          <div class="search-input-wrap">
+            <i class="ri-bowl-line" aria-hidden="true"></i>
+            <input type="text" id="itemSearch" placeholder="Search food items…" aria-label="Search food items">
+          </div>
+        </div>
+
+        <div class="filter-section" role="group" aria-label="Filter restaurants">
+          <div class="filter-box">
+            <i class="ri-map-pin-line" aria-hidden="true"></i>
+            <select id="locationFilter" aria-label="Filter by location">
+              <option value="All">All Locations</option>
+              <option value="Rohini">Rohini</option>
+              <option value="Dwarka">Dwarka</option>
+              <option value="Pitampura">Pitampura</option>
+              <option value="Uttam Nagar">Uttam Nagar</option>
+              <option value="Bawana">Bawana</option>
+            </select>
+          </div>
+
+          <div class="filter-box">
+            <i class="ri-restaurant-line" aria-hidden="true"></i>
+            <select id="Cuusinesdom" aria-label="Filter by cuisine">
+              <option value="All">All Cuisines</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Burger">Burger</option>
+              <option value="Chinese">Chinese</option>
+              <option value="North Indian">North Indian</option>
+              <option value="South Indian">South Indian</option>
+              <option value="Desserts">Desserts</option>
+            </select>
+          </div>
+
+          <div class="filter-box">
+            <i class="ri-star-fill" aria-hidden="true"></i>
+            <select id="ratingFilter" aria-label="Filter by rating">
+              <option value="All">All Ratings</option>
+              <option value="4">4★ &amp; Above</option>
+              <option value="3">3★ &amp; Above</option>
+              <option value="2">2★ &amp; Above</option>
+            </select>
+          </div>
+
+          <button class="filter-btn" aria-label="Apply selected filters">
+            <i class="ri-filter-3-line" aria-hidden="true"></i>
+            Apply Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- CUISINE CHIPS -->
+    <section aria-label="Browse by cuisine">
+      <div class="cuisine-section" role="list" aria-label="Cuisine filters">
+        <button class="cuisine active" role="listitem" data-cuisine="All">All</button>
+        <button class="cuisine" role="listitem" data-cuisine="Pizza">🍕 Pizza</button>
+        <button class="cuisine" role="listitem" data-cuisine="Burger">🍔 Burger</button>
+        <button class="cuisine" role="listitem" data-cuisine="Biryani">🍛 Biryani</button>
+        <button class="cuisine" role="listitem" data-cuisine="Chinese">🥡 Chinese</button>
+        <button class="cuisine" role="listitem" data-cuisine="Desserts">🍰 Desserts</button>
+        <button class="cuisine" role="listitem" data-cuisine="Drinks">🥤 Drinks</button>
+        <button class="cuisine" role="listitem" data-cuisine="Soft Drinks">🧃 Soft Drinks</button>
+        <button class="cuisine" role="listitem" data-cuisine="More">
+          <i class="ri-more-fill" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- RESTAURANTS -->
+    <section class="restaurants-section" aria-labelledby="rest-count-heading">
+      <div class="restaurant-top">
+        <h2 id="rest-count-heading">
+          <span id="restaurantCount">0</span> Restaurants Found
+        </h2>
+        <div class="sort-box">
+          <label for="sortFilter">Sort By:</label>
+          <select id="sortFilter" aria-label="Sort restaurants">
+            <option value="default">Popular</option>
+            <option value="high">Rating: High → Low</option>
+            <option value="low">Rating: Low → High</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Loading state -->
+      <div class="empty-state" id="loadingState" aria-live="polite">
+        <div class="empty-icon">🍽️</div>
+        <h3>Loading restaurants…</h3>
+        <p>Fetching the latest places near you.</p>
+      </div>
+
+      <!-- Error state -->
+      <div class="empty-state" id="errorState" aria-live="polite" hidden>
+        <div class="empty-icon">⚠️</div>
+        <h3>Couldn't load restaurants</h3>
+        <p id="errorMessage">Something went wrong while contacting the server.</p>
+        <button class="reset-btn" id="retryBtn">Retry</button>
+      </div>
+
+      <div class="empty-state" id="emptyState" aria-live="polite" hidden>
+        <div class="empty-icon">🍽️</div>
+        <h3>No restaurants found</h3>
+        <p>Try adjusting your filters or search terms.</p>
+        <button class="reset-btn" id="resetFiltersBtn">Reset Filters</button>
+      </div>
+
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Foodie</h2>
+        <p>Bringing delicious meals from your favourite restaurants directly to your doorstep.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="#" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+          <a href="#" aria-label="Facebook"><i class="ri-facebook-circle-line"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Categories</a>
+        <a href="#">Track Order</a>
+      </div>
+      <div class="footer-links">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie. All Rights Reserved. Made with ❤️ for food lovers.
+    </div>
+  </footer>
+
+  <!-- STICKY "VIEW CART" BAR — appears the moment an item is added -->
+  <div class="view-cart-bar" id="viewCartBar" hidden>
+    <div class="view-cart-info">
+      <span class="view-cart-icon"><i class="ri-shopping-basket-2-fill"></i></span>
+      <span class="view-cart-text">
+        <strong id="viewCartCount">0</strong> item<span id="viewCartPlural">s</span> added
+        <small id="viewCartSubtotal">₹0</small>
+      </span>
+    </div>
+    <button class="view-cart-btn" id="viewCartBtn" aria-label="View cart">
+      View Cart
+      <i class="ri-arrow-right-line"></i>
+    </button>
+  </div>
+
+  <div id="statusToast" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- RESTAURANT MENU QUICK-VIEW MODAL
+       Opens when a restaurant card is clicked. Fetches
+       GET /api/menu/restaurant/:id and lets the user add items
+       straight to the real cart (POST /api/cart/add) without
+       leaving the restaurant list. -->
+  <div class="menu-modal-overlay" id="menuModalOverlay" hidden>
+    <div class="menu-modal" role="dialog" aria-modal="true" aria-labelledby="menuModalRestName">
+      <button class="menu-modal-close" id="menuModalClose" aria-label="Close menu">
+        <i class="ri-close-line"></i>
+      </button>
+
+      <div class="menu-modal-header">
+        <img id="menuModalImg" src="" alt="" class="menu-modal-img">
+        <div>
+          <h2 id="menuModalRestName">Restaurant</h2>
+          <p id="menuModalRestMeta" class="menu-modal-meta"></p>
+        </div>
+      </div>
+
+      <div class="menu-modal-body" id="menuModalBody">
+        <div class="menu-modal-loading" id="menuModalLoading">Loading menu…</div>
+        <div class="menu-modal-error" id="menuModalError" hidden></div>
+        <div class="menu-modal-list" id="menuModalList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+  <script src="cart-storage.js"></script>
+  <script src="notifications-widget.js"></script>
+  <script src="mega4.js"></script>
+</body>
+</html>
