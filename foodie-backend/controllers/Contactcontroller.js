@@ -1,4 +1,4 @@
-const ContactMessage = require("../models/ContactMessage");
+const ContactMessage = require("../models/Contactmessage");
 const { sendEmail } = require("../utils/emailUtils");
 const { sendSuccess, sendError } = require("../utils/responseUtils");
 
@@ -37,11 +37,11 @@ const submitContactMessage = async (req, res) => {
             console.error("Contact notification email failed:", emailErr.message);
         }
 
-        return sendSuccess(res, 201, "Message sent successfully", { contactMessage });
+        return sendSuccess(res, 201, "Message sent successfully", { contactmessage });
 
     } catch (error) {
         return sendError(res, 500, error.message);
     }
 };
 
-module.exports = { submitContactMessage };
+module.exports = { submitContactmessage };
